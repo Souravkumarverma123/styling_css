@@ -1,5 +1,5 @@
 /**
- * Build script for chai-css
+ * Build script for pendora-css
  * Bundles source files into dist/ for npm publishing
  */
 
@@ -16,7 +16,7 @@ function run(command) {
   execSync(command, { cwd: __dirname, stdio: 'inherit' });
 }
 
-console.log('Building chai-css...\n');
+console.log('Building pendora-css...\n');
 
 // Clean dist
 if (existsSync(distDir)) {
@@ -44,10 +44,10 @@ delete pkg.scripts;
 writeFileSync(resolve(distDir, 'package.json'), JSON.stringify(pkg, null, 2));
 
 console.log('\n✅ Build complete!');
-console.log('   dist/chai-css.esm.js  — ES Module');
-console.log('   dist/chai-css.cjs.js  — CommonJS');
-console.log('   dist/chai-css.min.js — IIFE (for <script> tag)');
-console.log('   dist/types.d.ts       — TypeScript definitions');
+console.log('   dist/pendora-css.esm.js  — ES Module');
+console.log('   dist/pendora-css.cjs.js  — CommonJS');
+console.log('   dist/pendora-css.min.js — IIFE (for <script> tag)');
+console.log('   dist/types.d.ts          — TypeScript definitions');
 
 function createManualBundle() {
   // Simple concatenation-based bundler for dev/preview
@@ -67,11 +67,11 @@ function createManualBundle() {
   bundle += indexContent + '\n';
 
   // ESM
-  writeFileSync(resolve(distDir, 'chai-css.esm.js'), bundle);
+  writeFileSync(resolve(distDir, 'pendora-css.esm.js'), bundle);
   // CJS
-  const cjsBundle = `module.exports = require('./chai-css.cjs.js');`;
-  writeFileSync(resolve(distDir, 'chai-css.cjs.js'), `(function() { ${bundle} })();`);
+  const cjsBundle = `module.exports = require('./pendora-css.cjs.js');`;
+  writeFileSync(resolve(distDir, 'pendora-css.cjs.js'), `(function() { ${bundle} })();`);
   // Min (IIFE) - just copy ESM as placeholder
-  writeFileSync(resolve(distDir, 'chai-css.min.js'), bundle);
-  writeFileSync(resolve(distDir, 'chai-css.umd.js'), `(function(global) { ${bundle} })(typeof window !== 'undefined' ? window : global);`);
+  writeFileSync(resolve(distDir, 'pendora-css.min.js'), bundle);
+  writeFileSync(resolve(distDir, 'pendora-css.umd.js'), `(function(global) { ${bundle} })(typeof window !== 'undefined' ? window : global);`);
 }

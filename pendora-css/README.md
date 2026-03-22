@@ -40,7 +40,7 @@ initChai();
 
 ## Features
 
-| Feature | **Chai CSS** |
+| Feature | **Pendora CSS** |
 |---|---|
 | Zero build step | ✅ |
 | Hover / focus / active | ✅ `chai-hover:bg-blue-500` |
@@ -214,7 +214,7 @@ initChai();
 Manually process an element's chai-* classes.
 
 ```js
-import { applyElement } from 'chai-css';
+import { applyElement } from 'pendora-css';
 applyElement(document.getElementById('dynamic-content'));
 ```
 

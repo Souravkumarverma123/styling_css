@@ -17,20 +17,20 @@ export default [
     input: 'src/index.js',
     output: [
       {
-        file: 'dist/chai-css.esm.js',
+        file: 'dist/pendora-css.esm.js',
         format: 'esm',
         sourcemap: true,
       },
       {
-        file: 'dist/chai-css.cjs.js',
+        file: 'dist/pendora-css.cjs.js',
         format: 'cjs',
         sourcemap: true,
         exports: 'named',
       },
       {
-        file: 'dist/chai-css.umd.js',
+        file: 'dist/pendora-css.umd.js',
         format: 'umd',
-        name: 'ChaiCSS',
+        name: 'PendoraCSS',
         sourcemap: true,
         globals: {},
       },
@@ -41,9 +41,9 @@ export default [
   {
     input: 'src/index.js',
     output: {
-      file: 'dist/chai-css.min.js',
+      file: 'dist/pendora-css.min.js',
       format: 'iife',
-      name: 'ChaiCSS',
+      name: 'PendoraCSS',
       sourcemap: true,
     },
     plugins: [
