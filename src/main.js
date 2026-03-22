@@ -1,2 +1,2 @@
-import { initChai } from '../chai-package/src/index.js';
+import { initChai } from '../pendora-css/src/index.js';
 initChai();

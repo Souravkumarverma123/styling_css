@@ -1,4 +1,4 @@
-# ☕ Chai CSS
+# ☕ Pendora CSS
 
 > A zero-build, utility-first CSS engine — like Tailwind, but at runtime.
 
@@ -6,20 +6,20 @@ No compilation. No PostCSS. No config. Just import and go.
 
 ---
 
-## Built with Chai CSS
+## Built with Pendora CSS
 
-This landing page is built entirely with Chai CSS — no Tailwind, no custom CSS. Just chai-* classes. If you like what you see, you're looking at Chai CSS in action.
+This landing page is built entirely with Pendora CSS — no Tailwind, no custom CSS. Just chai-* classes. If you like what you see, you're looking at Pendora CSS in action.
 
 ---
 
 ## Quick Start
 
 ```bash
-npm install chai-css
+npm install pendora-css
 ```
 
 ```js
-import { initChai } from 'chai-css';
+import { initChai } from 'pendora-css';
 initChai();
 ```
 
@@ -53,7 +53,7 @@ npm run dev
 ## Project Structure
 
 ```
-├── chai-package/              ← npm package
+├── pendora-css/              ← npm package
 │   ├── src/
 │   │   ├── index.js           ← public API
 │   │   ├── engine.js           ← CSS injection engine
@@ -70,7 +70,7 @@ npm run dev
 
 ## Features
 
-| Feature | **Chai CSS** |
+| Feature | **Pendora CSS** |
 |---|---|
 | Zero build step | ✅ |
 | Hover / focus / active | ✅ `chai-hover:bg-blue-500` |
@@ -85,7 +85,7 @@ npm run dev
 
 ## How It Works
 
-Chai CSS **injects real `<style>` rules** instead of inline styles:
+Pendora CSS **injects real `<style>` rules** instead of inline styles:
 
 ```
 .chai-hover\:bg-blue-500:hover { background-color: #3b82f6 }

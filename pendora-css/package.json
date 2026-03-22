@@ -1,5 +1,5 @@
 {
-  "name": "chai-css",
+  "name": "pendora-css",
   "version": "1.0.0",
   "description": "A zero-build, utility-first CSS engine — like Tailwind but at runtime. Supports hover/focus variants, responsive breakpoints, dark mode, arbitrary values, full Tailwind color palette, and unique tea colors.",
   "type": "module",

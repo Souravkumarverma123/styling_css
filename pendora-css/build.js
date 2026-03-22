@@ -35,7 +35,7 @@ try {
 
 // Copy types
 const typeDest = resolve(distDir, 'types.d.ts');
-copyFileSync(resolve(__dirname, 'src/types.ts'), typeDest);
+copyFileSync(resolve(__dirname, 'src/types.d.ts'), typeDest);
 
 // Copy package.json to dist
 const pkg = JSON.parse(readFileSync(resolve(__dirname, 'package.json'), 'utf-8'));

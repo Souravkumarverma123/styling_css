@@ -1,25 +1,25 @@
-# ☕ Chai CSS
+# ☕ Pendora CSS
 
 > A zero-build, utility-first CSS engine — like Tailwind, but at runtime.
 
 No compilation. No PostCSS. No config. Just import and go.
 
 ```bash
-npm install chai-css
+npm install pendora-css
 ```
 
 ---
 
-## Built with Chai CSS
+## Built with Pendora CSS
 
-This landing page you're viewing? Built entirely with Chai CSS. No Tailwind, no custom CSS — just chai-* classes. It's the best proof that Chai CSS is production-ready.
+This landing page you're viewing? Built entirely with Pendora CSS. No Tailwind, no custom CSS — just chai-* classes. It's the best proof that Pendora CSS is production-ready.
 
 ---
 
 ## Quick Start
 
 ```js
-import { initChai } from 'chai-css';
+import { initChai } from 'pendora-css';
 initChai();
 ```
 
@@ -205,7 +205,7 @@ This means:
 Boot the engine. Call once at startup.
 
 ```js
-import { initChai } from 'chai-css';
+import { initChai } from 'pendora-css';
 initChai();
 ```
 
