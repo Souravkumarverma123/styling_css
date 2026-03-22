@@ -10,45 +10,46 @@ npm install chai-css
 
 ---
 
-## Why Chai CSS? (vs ChaiTail)
+## Built with Chai CSS
 
-| Feature | ChaiTail | **Chai CSS** |
-|---|---|---|
-| Hover / focus / active | ❌ inline styles | ✅ `chai-hover:bg-blue-500` |
-| Responsive breakpoints | ❌ | ✅ `chai-md:flex-col` |
-| Dark mode | ❌ | ✅ `chai-dark:text-white` |
-| Arbitrary values | ❌ | ✅ `chai-p-[20px]` |
-| Tea color palette | ✅ | ✅ (expanded to 26 teas) |
-| Full Tailwind colors | ❌ | ✅ 242 named shades |
-| Dynamic elements / SPA | ❌ (class deleted!) | ✅ MutationObserver |
-| CSS transitions on hover | ❌ | ✅ |
+This landing page you're viewing? Built entirely with Chai CSS. No Tailwind, no custom CSS — just chai-* classes. It's the best proof that Chai CSS is production-ready.
 
 ---
 
 ## Quick Start
 
 ```js
-// main.js
 import { initChai } from 'chai-css';
 initChai();
 ```
 
 ```html
-<!-- index.html -->
-<div class="chai-flex chai-items-center chai-gap-4 chai-p-6 chai-rounded-xl chai-bg-zinc-900">
+<div class="chai-flex chai-items-center chai-gap-4 chai-p-6 chai-bg-zinc-900">
 
-  <h1 class="chai-text-4xl chai-font-bold chai-text-white chai-tracking-tight">
-    Hello Chai!
-  </h1>
+  <h1 class="chai-text-4xl chai-font-bold chai-text-white">Hello Chai!</h1>
 
   <button class="chai-bg-masala-chai chai-text-white chai-px-6 chai-py-3
-                 chai-rounded-full chai-font-semibold chai-transition
-                 chai-hover:bg-tandoori-chai chai-cursor-pointer">
+                 chai-rounded-full chai-hover:bg-tandoori-chai chai-transition">
     Brew It
   </button>
 
 </div>
 ```
+
+---
+
+## Features
+
+| Feature | **Chai CSS** |
+|---|---|
+| Zero build step | ✅ |
+| Hover / focus / active | ✅ `chai-hover:bg-blue-500` |
+| Responsive breakpoints | ✅ `chai-md:flex-col` |
+| Dark mode | ✅ `chai-dark:text-white` |
+| Arbitrary values | ✅ `chai-p-[20px]` |
+| Tea color palette | ✅ 26 unique colors |
+| Tailwind colors | ✅ 242 named shades |
+| SPA / Dynamic elements | ✅ MutationObserver |
 
 ---
 
@@ -65,22 +66,34 @@ chai-overflow-hidden  chai-overflow-auto
 chai-mx-auto
 ```
 
-### Spacing (× 4px scale, like Tailwind)
+### Spacing
 
 ```
 chai-p-4   → padding: 16px      chai-px-6  → padding: 0 24px
 chai-m-2   → margin: 8px        chai-mt-8  → margin-top: 32px
 chai-gap-4 → gap: 16px
 
-# Arbitrary values:
 chai-p-[20px]   chai-mt-[1.5rem]   chai-gap-[clamp(1rem,2vw,2rem)]
 ```
 
-### Sizing
+### Colors
 
+All Tailwind color scales:
 ```
-chai-w-full   chai-h-screen   chai-min-h-screen
-chai-max-w-xl chai-max-w-[1320px]   chai-w-[400px]
+chai-bg-blue-500     chai-text-zinc-100    chai-border-red-600
+chai-bg-emerald-400  chai-text-purple-300
+```
+
+26 unique tea colors:
+```
+chai-bg-masala-chai      chai-bg-darjeeling-tea   chai-bg-matcha-tea
+chai-bg-tandoori-chai    chai-bg-mint-tea         chai-bg-kashmiri-chai
+chai-bg-hibiscus-tea     chai-bg-black-tea        ...and more!
+```
+
+Arbitrary hex:
+```
+chai-bg-[#0c0c0c]   chai-text-[rgba(255,255,255,0.6)]
 ```
 
 ### Typography
@@ -88,54 +101,23 @@ chai-max-w-xl chai-max-w-[1320px]   chai-w-[400px]
 ```
 chai-text-xs   chai-text-sm   chai-text-base  chai-text-lg  chai-text-xl
 chai-text-2xl  chai-text-3xl  chai-text-4xl   chai-text-5xl chai-text-6xl
-chai-text-[clamp(1rem,4vw,3rem)]   ← arbitrary font sizes!
 
 chai-font-thin   chai-font-light  chai-font-normal   chai-font-medium
 chai-font-semibold  chai-font-bold   chai-font-extrabold
 
 chai-tracking-tight   chai-tracking-wide   chai-tracking-[0.05em]
-chai-leading-relaxed  chai-leading-loose   chai-leading-[1.8]
+chai-leading-relaxed  chai-leading-loose
 
 chai-uppercase  chai-lowercase  chai-capitalize
 chai-no-underline  chai-underline  chai-truncate  chai-antialiased
 ```
 
-### Colors
-
-All Tailwind color scales are supported:
-
-```
-chai-bg-blue-500     chai-text-zinc-100    chai-border-red-600
-chai-bg-emerald-400  chai-text-purple-300
-```
-
-**Plus 26 unique tea colors:**
-
-```
-chai-bg-masala-chai      chai-text-darjeeling-tea   chai-bg-matcha-tea
-chai-text-tandoori-chai  chai-bg-irani-chai         chai-text-rooibos-tea
-chai-bg-mint-tea         chai-text-kashmiri-chai    chai-bg-hibiscus-tea
-... and more!
-```
-
-Arbitrary hex colors:
-
-```
-chai-bg-[#0c0c0c]   chai-text-[rgba(255,255,255,0.6)]   chai-border-[#e54d2e]
-```
-
-### Borders & Rounding
+### Borders & Effects
 
 ```
 chai-border          chai-border-2      chai-border-blue-500
-chai-border-t        chai-border-b      chai-border-none
 chai-rounded         chai-rounded-lg    chai-rounded-xl     chai-rounded-full
-chai-rounded-[12px]
-```
 
-### Effects
-
-```
 chai-shadow-sm   chai-shadow-md  chai-shadow-lg   chai-shadow-xl
 chai-opacity-50  chai-opacity-[0.35]
 chai-backdrop-blur-md
@@ -164,7 +146,7 @@ chai-ease-in            chai-ease-out      chai-ease-in-out
 </button>
 ```
 
-All pseudo variants:
+Pseudo variants:
 ```
 chai-hover:    chai-focus:    chai-active:    chai-visited:
 chai-disabled: chai-checked:  chai-odd:       chai-even:
@@ -198,25 +180,13 @@ chai-2xl:   (≥1536px)
 
 ---
 
-## Grid
-
-```html
-<!-- 3-column grid, 2 on md, 1 on mobile -->
-<div class="chai-grid  chai-grid-cols-1  chai-md:grid-cols-2  chai-lg:grid-cols-3  chai-gap-6">
-  <div class="chai-col-span-2">Wide card</div>
-  <div>Normal card</div>
-</div>
-```
-
----
-
 ## How It Works
 
-Instead of inline styles (like ChaiTail), Chai CSS **injects real `<style>` rules**:
+Chai CSS **injects real `<style>` rules** instead of inline styles:
 
 ```
-  .chai-hover\:bg-blue-500:hover { background-color: #3b82f6 }
-  @media (min-width: 768px) { .chai-md\:flex-col { flex-direction: column } }
+.chai-hover\:bg-blue-500:hover { background-color: #3b82f6 }
+@media (min-width: 768px) { .chai-md\:flex-col { flex-direction: column } }
 ```
 
 This means:
@@ -228,16 +198,24 @@ This means:
 
 ---
 
-## Project Structure
+## API
 
+### `initChai()`
+
+Boot the engine. Call once at startup.
+
+```js
+import { initChai } from 'chai-css';
+initChai();
 ```
-chai-css/
-├── src/
-│   ├── index.js     ← public API (initChai, applyElement)
-│   ├── engine.js    ← core CSS injection engine
-│   ├── colors.js    ← Tailwind + tea color palettes
-│   └── utils.js     ← escapeCSSSelector, extractArbitraryValue
-└── package.json
+
+### `applyElement(element)`
+
+Manually process an element's chai-* classes.
+
+```js
+import { applyElement } from 'chai-css';
+applyElement(document.getElementById('dynamic-content'));
 ```
 
 ---
