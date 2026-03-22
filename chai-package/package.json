@@ -1,0 +1,60 @@
+{
+  "name": "chai-css",
+  "version": "1.0.0",
+  "description": "A zero-build, utility-first CSS engine — like Tailwind but at runtime. Supports hover/focus variants, responsive breakpoints, dark mode, arbitrary values, full Tailwind color palette, and unique tea colors.",
+  "type": "module",
+  "main": "dist/chai-css.cjs.js",
+  "module": "dist/chai-css.esm.js",
+  "unpkg": "dist/chai-css.min.js",
+  "jsdelivr": "dist/chai-css.min.js",
+  "types": "src/types.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/chai-css.esm.js",
+      "require": "./dist/chai-css.cjs.js",
+      "default": "./dist/chai-css.cjs.js"
+    },
+    "./dist/chai-css.min.js": {
+      "import": "./dist/chai-css.min.js",
+      "default": "./dist/chai-css.min.js"
+    }
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "keywords": [
+    "css",
+    "utility-first",
+    "tailwind",
+    "runtime-css",
+    "chai",
+    "zero-build",
+    "design-system",
+    "utility-css"
+  ],
+  "author": "Sourav Kumar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/souravkumdev/chai-css.git"
+  },
+  "bugs": {
+    "url": "https://github.com/souravkumdev/chai-css/issues"
+  },
+  "homepage": "https://github.com/souravkumdev/chai-css#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "dev": "node --input-type=module -e \"import { initChai } from './src/index.js'; console.log('initChai type:', typeof initChai);\"",
+    "build": "node build.js",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup": "^4.20.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "terser": "^5.32.0"
+  }
+}
