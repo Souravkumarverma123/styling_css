@@ -1,22 +1,22 @@
 {
-  "name": "pendora-css",
+  "name": "@sourav7534kumar/pandora-css",
   "version": "1.0.0",
   "description": "A zero-build, utility-first CSS engine — like Tailwind but at runtime. Supports hover/focus variants, responsive breakpoints, dark mode, arbitrary values, full Tailwind color palette, and unique tea colors.",
   "type": "module",
-  "main": "dist/pendora-css.cjs.js",
-  "module": "dist/pendora-css.esm.js",
-  "unpkg": "dist/pendora-css.min.js",
-  "jsdelivr": "dist/pendora-css.min.js",
+  "main": "dist/pandora-css.cjs.js",
+  "module": "dist/pandora-css.esm.js",
+  "unpkg": "dist/pandora-css.min.js",
+  "jsdelivr": "dist/pandora-css.min.js",
   "types": "src/types.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/pendora-css.esm.js",
-      "require": "./dist/pendora-css.cjs.js",
-      "default": "./dist/pendora-css.cjs.js"
+      "import": "./dist/pandora-css.esm.js",
+      "require": "./dist/pandora-css.cjs.js",
+      "default": "./dist/pandora-css.cjs.js"
     },
-    "./dist/pendora-css.min.js": {
-      "import": "./dist/pendora-css.min.js",
-      "default": "./dist/pendora-css.min.js"
+    "./dist/pandora-css.min.js": {
+      "import": "./dist/pandora-css.min.js",
+      "default": "./dist/pandora-css.min.js"
     }
   },
   "files": [
@@ -28,7 +28,7 @@
     "utility-first",
     "tailwind",
     "runtime-css",
-    "pendora",
+    "pandora",
     "zero-build",
     "design-system",
     "utility-css"
@@ -37,12 +37,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/souravkumdev/pendora-css.git"
+    "url": "https://github.com/souravkumdev/pandora-css.git"
   },
   "bugs": {
-    "url": "https://github.com/souravkumdev/pendora-css/issues"
+    "url": "https://github.com/souravkumdev/pandora-css/issues"
   },
-  "homepage": "https://github.com/souravkumdev/pendora-css#readme",
+  "homepage": "https://github.com/souravkumdev/pandora-css#readme",
   "engines": {
     "node": ">=16.0.0"
   },

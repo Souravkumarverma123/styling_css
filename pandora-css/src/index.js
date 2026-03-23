@@ -1,8 +1,8 @@
 /**
- * index.js — Public API entry point for chai-css
+ * index.js — Public API entry point for pandora-css
  *
  * Import this in your project:
- *   import { initChai } from 'chai-css';
+ *   import { initChai } from 'pandora-css';
  *   initChai();
  */
 

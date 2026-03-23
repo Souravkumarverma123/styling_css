@@ -1,4 +1,4 @@
-# ☕ Pandora CSS
+# Pandora CSS
 
 > A zero-build, utility-first CSS engine — like Tailwind, but at runtime.
 
@@ -6,9 +6,9 @@ No compilation. No PostCSS. No config. Just import and go.
 
 ---
 
-## Built with Pendora CSS
+## Built with Pandora CSS
 
-This landing page is built entirely with Pendora CSS — no Tailwind, no custom CSS. Just chai-* classes. If you like what you see, you're looking at Pendora CSS in action.
+This landing page is built entirely with Pandora CSS — no Tailwind, no custom CSS. Just chai-* classes. If you like what you see, you're looking at Pandora CSS in action.
 
 ---
 
@@ -85,7 +85,7 @@ npm run dev
 
 ## How It Works
 
-Pendora CSS **injects real `<style>` rules** instead of inline styles:
+Pandora CSS **injects real `<style>` rules** instead of inline styles:
 
 ```
 .chai-hover\:bg-blue-500:hover { background-color: #3b82f6 }
