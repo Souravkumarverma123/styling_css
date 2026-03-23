@@ -521,6 +521,74 @@ function _resolve(u) {
     if (aspectMap[u.slice(7)]) return `aspect-ratio:${aspectMap[u.slice(7)]}`;
   }
 
+  // ── BACKGROUNDS ───────────────────────────────────────────────────────────
+  if (u.startsWith('bg-gradient-to-')) {
+    const direction = u.slice(14);
+    const dirMap = {
+      'r': 'to right',
+      'l': 'to left',
+      't': 'to top',
+      'b': 'to bottom',
+      'tr': 'to top right',
+      'tl': 'to top left',
+      'br': 'to bottom right',
+      'bl': 'to bottom left',
+    };
+    if (dirMap[direction]) return `background-image:linear-gradient(${dirMap[direction]},var(--tw-gradient-stops))`;
+  }
+
+  if (u.startsWith('from-')) {
+    const token = u.slice(5);
+    const color = resolveColor(token); if (color) return `--tw-gradient-from:${color};--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)`;
+  }
+
+  if (u.startsWith('to-')) {
+    const token = u.slice(3);
+    const color = resolveColor(token); if (color) return `--tw-gradient-to:${color}`;
+    if (token === 'transparent') return `--tw-gradient-to:transparent`;
+  }
+
+  // ── RING (outline on focus) ───────────────────────────────────────────────
+  if (u.startsWith('ring-')) {
+    const token = u.slice(5);
+    if (token === '0') return 'box-shadow:0 0 0 0 transparent';
+    if (token === '1') return 'box-shadow:0 0 0 2px rgba(59,130,246,0.5)';
+    if (token === '2') return 'box-shadow:0 0 0 4px rgba(59,130,246,0.5)';
+    if (token === '4') return 'box-shadow:0 0 0 6px rgba(59,130,246,0.5)';
+    if (token === 'yellow-400') return 'box-shadow:0 0 0 2px rgba(250,204,21,0.5)';
+    if (token === 'yellow-500') return 'box-shadow:0 0 0 2px rgba(234,179,8,0.5)';
+    const color = resolveColor(token); if (color) return `box-shadow:0 0 0 2px ${color}`;
+    const a = extractArbitraryValue(token); if (a) return `box-shadow:0 0 0 2px ${a}`;
+  }
+
+  // ── RING OFFSET ────────────────────────────────────────────────────────────
+  if (u.startsWith('ring-offset-')) {
+    const token = u.slice(12);
+    const n = parseFloat(token);
+    if (!isNaN(n)) return `box-shadow:0 0 0 ${n * 4}px var(--tw-ring-offset-shadow,0 0 #000)`;
+  }
+
+  // ── SCALE ─────────────────────────────────────────────────────────────────
+  if (u.startsWith('scale-')) {
+    const token = u.slice(6);
+    if (token === '0') return 'transform:scale(0)';
+    if (token === '50') return 'transform:scale(.5)';
+    if (token === '75') return 'transform:scale(.75)';
+    if (token === '90') return 'transform:scale(.9)';
+    if (token === '95') return 'transform:scale(.95)';
+    if (token === '100') return 'transform:scale(1)';
+    if (token === '105') return 'transform:scale(1.05)';
+    if (token === '110') return 'transform:scale(1.1)';
+    if (token === '125') return 'transform:scale(1.25)';
+    if (token === '150') return 'transform:scale(1.5)';
+    const a = extractArbitraryValue(token); if (a) return `transform:scale(${a})`;
+  }
+
+  // ── WHITESPACE ─────────────────────────────────────────────────────────────
+  if (u === 'whitespace-nowrap') return 'white-space:nowrap';
+  if (u === 'whitespace-pre') return 'white-space:pre';
+  if (u === 'whitespace-pre-wrap') return 'white-space:pre-wrap';
+
   return null; // Unrecognised — skip silently
 }
 
