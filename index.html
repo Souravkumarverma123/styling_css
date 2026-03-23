@@ -3,251 +3,547 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pandora CSS — Zero-Build Utility-First CSS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Lemon CSS — Zero-Build Utility-First CSS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
+    @font-face {
+      font-family: 'Clash Display';
+      src: url('https://cdn.jsdelivr.net/gh/nicholasio/clash-display-font@main/fonts/ClashDisplay-Variable.woff2') format('woff2');
+      font-weight: 200 700;
+      font-display: swap;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Geist', system-ui, sans-serif; }
-    .lucide { width: 20px; height: 20px; }
+    
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #141414;
+      --bg-tertiary: #1c1c1c;
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1a1;
+      --text-muted: #6b6b6b;
+      --accent: #FFD93D;
+      --accent-hover: #ffec8a;
+      --accent-dim: rgba(255, 217, 61, 0.15);
+      --border: #2a2a2a;
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 217, 61, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255, 217, 61, 0.05), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .font-display {
+      font-family: 'Clash Display', 'Space Grotesk', sans-serif;
+    }
+
+    .font-mono {
+      font-family: 'DM Mono', monospace;
+    }
+
+    .lemon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: relative;
+      box-shadow: 
+        0 0 0 4px rgba(255, 217, 61, 0.1),
+        0 20px 40px rgba(255, 217, 61, 0.2);
+      animation: lemonFloat 3s ease-in-out infinite;
+    }
+
+    .lemon::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 12px;
+      background: #2d5a2d;
+      border-radius: 4px 4px 2px 2px;
+    }
+
+    .lemon::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(255,255,255,0.2), transparent 40%);
+      border-radius: inherit;
+    }
+
+    @keyframes lemonFloat {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-12px) rotate(5deg); }
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #0a0a0a;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 217, 61, 0.3);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-secondary);
+      border-color: var(--text-muted);
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .code-block {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--bg-tertiary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .code-dot:nth-child(1) { background: #ff5f57; }
+    .code-dot:nth-child(2) { background: #febc2e; }
+    .code-dot:nth-child(3) { background: #28c840; }
+
+    .code-content {
+      padding: 24px;
+      overflow-x: auto;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .code-keyword { color: #c792ea; }
+    .code-string { color: #c3e88d; }
+    .code-function { color: #82aaff; }
+    .code-tag { color: #f07178; }
+    .code-attr { color: #ffcb6b; }
+    .code-comment { color: #575f66; }
+
+    .feature-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .color-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .color-swatch:hover {
+      transform: scale(1.1);
+    }
+
+    .stat-number {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    @media (max-width: 768px) {
+      .stat-number { font-size: 36px; }
+      .lemon { width: 36px; height: 36px; }
+    }
   </style>
 </head>
-<body class="chai-bg-white chai-text-black chai-antialiased">
+<body>
 
-  <div class="chai-min-h-screen chai-max-w-5xl chai-mx-auto chai-px-6 chai-py-12">
-
-    <nav class="chai-flex chai-items-center chai-justify-between chai-mb-24">
-      <div class="chai-flex chai-items-center chai-gap-3">
-        <div class="chai-w-8 chai-h-8 chai-rounded-lg chai-bg-black chai-flex chai-items-center chai-justify-center">
-          <svg class="chai-text-white" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M12 10v2"/><path d="M8 14c-2 0-4 1-4 3v2h16v-2c0-2-2-3-4-3"/><path d="M4 8l2-2"/><path d="M20 8l-2-2"/><path d="M12 8v6"/></svg>
-        </div>
-        <span class="chai-text-lg chai-font-semibold">Pandora CSS</span>
+  <nav class="container" style="padding-top: 24px; padding-bottom: 24px;">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="lemon"></div>
+        <span class="font-display" style="font-size: 20px; font-weight: 600;">Lemon CSS</span>
       </div>
-      <div class="chai-flex chai-items-center chai-gap-6">
-        <a href="#features" class="chai-text-sm chai-text-zinc-500 chai-hover:text-black chai-transition">Features</a>
-        <a href="#colors" class="chai-text-sm chai-text-zinc-500 chai-hover:text-black chai-transition">Colors</a>
-        <a href="#install" class="chai-text-sm chai-text-zinc-500 chai-hover:text-black chai-transition">Install</a>
-        <a href="https://github.com" target="_blank" class="chai-flex chai-items-center chai-gap-2 chai-bg-black chai-text-white chai-px-4 chai-py-2 chai-rounded-lg chai-text-sm chai-font-medium chai-transition chai-hover:bg-zinc-800">
+      <div style="display: flex; align-items: center; gap: 32px;">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#colors" class="nav-link">Colors</a>
+        <a href="#install" class="nav-link">Install</a>
+        <a href="https://github.com" target="_blank" class="btn-secondary" style="padding: 10px 16px; font-size: 13px;">
           <i data-lucide="github" style="width:16px;height:16px;"></i>
           GitHub
         </a>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <main>
+  <main>
+    <section class="container" style="padding: 80px 0; text-align: center;">
+      <div class="badge animate-in" style="margin-bottom: 24px;">
+        <i data-lucide="zap" style="width:14px;height:14px;"></i>
+        Zero-Build. Zero-Config. Pure CSS.
+      </div>
+      
+      <h1 class="font-display animate-in delay-1" style="font-size: clamp(40px, 8vw, 80px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em;">
+        Utility CSS that<br/><span style="color: var(--accent);">squeezes</span> your workflow
+      </h1>
+      
+      <p class="animate-in delay-2" style="font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px; line-height: 1.7;">
+        Like Tailwind, but without the build step. No PostCSS, no config, no headaches. 
+        Import once, style forever.
+      </p>
+      
+      <div class="animate-in delay-3" style="display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="#install" class="btn-primary">
+          Get Started
+          <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+        </a>
+        <a href="#features" class="btn-secondary">
+          See Features
+        </a>
+      </div>
+    </section>
 
-      <section class="chai-text-center chai-mb-32">
-        <h1 class="chai-text-5xl chai-font-bold chai-tracking-tight chai-mb-6 chai-lg:text-7xl chai-leading-tight">
-          CSS that feels like
-          <span class="chai-text-zinc-300">chai</span>
-        </h1>
-        
-        <p class="chai-text-lg chai-text-zinc-500 chai-max-w-xl chai-mx-auto chai-mb-10 chai-lg:text-xl chai-leading-relaxed">
-          Zero-build, utility-first CSS. Like Tailwind, but without the build step. No config, no PostCSS, no headaches.
-        </p>
-        
-        <div class="chai-flex chai-flex-col chai-items-center chai-justify-center chai-gap-4 chai-sm:flex-row">
-          <a href="#install" class="chai-flex chai-items-center chai-gap-2 chai-bg-black chai-text-white chai-px-6 chai-py-3 chai-rounded-lg chai-font-medium chai-text-sm chai-transition chai-hover:bg-zinc-800">
-            Get Started
-            <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-          </a>
-          <a href="#features" class="chai-flex chai-items-center chai-gap-2 chai-bg-zinc-100 chai-text-black chai-px-6 chai-py-3 chai-rounded-lg chai-font-medium chai-text-sm chai-transition chai-hover:bg-zinc-200">
-            See Features
-          </a>
+    <section class="container" style="padding: 60px 0;">
+      <div class="code-block animate-in delay-4">
+        <div class="code-header">
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <span style="margin-left: 12px; font-size: 12px; color: var(--text-muted);">index.html</span>
         </div>
-      </section>
+        <div class="code-content">
+<span class="code-comment">&lt;!-- Zero setup. Just import and go. --&gt;</span>
+<span class="code-tag">&lt;script</span> <span class="code-attr">type</span>=<span class="code-string">"module"</span><span class="code-tag">&gt;</span>
+  <span class="code-keyword">import</span> { <span class="code-function">initLemon</span> } <span class="code-keyword">from</span> <span class="code-string">'lemon-css'</span>;
+  <span class="code-function">initLemon</span>();
+<span class="code-tag">&lt;/script&gt;</span>
 
-      <section class="chai-mb-32">
-        <div class="chai-bg-zinc-50 chai-border chai-border-zinc-200 chai-rounded-2xl chai-overflow-hidden">
-          <div class="chai-flex chai-items-center chai-gap-2 chai-px-4 chai-py-3 chai-bg-zinc-100 chai-border-b chai-border-zinc-200">
-            <div class="chai-flex chai-gap-2">
-              <div class="chai-w-3 chai-h-3 chai-rounded-full chai-bg-zinc-300"></div>
-              <div class="chai-w-3 chai-h-3 chai-rounded-full chai-bg-zinc-300"></div>
-              <div class="chai-w-3 chai-h-3 chai-rounded-full chai-bg-zinc-300"></div>
-            </div>
-            <span class="chai-text-xs chai-text-zinc-400 chai-ml-4">index.html</span>
-          </div>
-          <pre class="chai-p-6 chai-text-sm chai-overflow-x-auto chai-lg:text-base chai-font-mono"><code><span class="chai-text-zinc-400">&lt;script type="module"&gt;</span>
-<span class="chai-text-violet-600">import</span> { <span class="chai-text-amber-600">initChai</span> } <span class="chai-text-violet-600">from</span> <span class="chai-text-green-600">'pandora-css'</span>;
-<span class="chai-text-amber-600">initChai</span>();
-<span class="chai-text-zinc-400">&lt;/script&gt;</span>
+<span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-string">"le-flex le-gap-4 le-p-8 le-bg-zinc-900 le-rounded-2xl"</span><span class="code-tag">&gt;</span>
+  <span class="code-tag">&lt;h1</span> <span class="code-attr">class</span>=<span class="code-string">"le-text-4xl le-font-bold le-text-yellow-400"</span><span class="code-tag">&gt;</span>
+    Hello Lemon! 🫡
+  <span class="code-tag">&lt;/h1&gt;</span>
 
-<span class="chai-text-zinc-400">&lt;div</span> <span class="chai-text-violet-600">class</span>=<span class="chai-text-green-600">"chai-flex chai-gap-4 chai-p-8"</span><span class="chai-text-zinc-400">&gt;</span>
-  <span class="chai-text-zinc-400">&lt;h1</span> <span class="chai-text-violet-600">class</span>=<span class="chai-text-green-600">"chai-text-4xl chai-font-bold"</span><span class="chai-text-zinc-400">&gt;</span>
-    Hello Chai!
-  <span class="chai-text-zinc-400">&lt;/h1&gt;</span>
-
-  <span class="chai-text-zinc-400">&lt;button</span> <span class="chai-text-violet-600">class</span>=<span class="chai-text-green-600">"</span>
-  <span class="chai-text-green-600">chai-bg-masala-chai chai-hover:bg-tandoori-chai</span>
-  <span class="chai-text-green-600">chai-px-6 chai-py-3 chai-rounded-full</span>
-  <span class="chai-text-green-600">chai-transition</span>
-  <span class="chai-text-green-600">"</span><span class="chai-text-zinc-400">&gt;</span>
-    Brew It
-  <span class="chai-text-zinc-400">&lt;/button&gt;</span>
-<span class="chai-text-zinc-400">&lt;/div&gt;</span></code></pre>
+  <span class="code-tag">&lt;button</span> <span class="code-attr">class</span>=<span class="code-string">"
+    le-bg-yellow-400 le-text-black le-px-6 le-py-3 
+    le-rounded-xl le-font-semibold le-transition-all
+    hover:le-scale-105 hover:le-shadow-lg
+  "</span><span class="code-tag">&gt;</span>
+    Squeeze It
+  <span class="code-tag">&lt;/button&gt;</span>
+<span class="code-tag">&lt;/div&gt;</span>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="features" class="chai-mb-32">
-        <h2 class="chai-text-sm chai-font-medium chai-uppercase chai-tracking-widest chai-text-zinc-400 chai-mb-12">Features</h2>
-
-        <div class="chai-grid chai-grid-cols-1 chai-md:grid-cols-2 chai-lg:grid-cols-3 chai-gap-8">
-
-          <div class="chai-border-b chai-border-zinc-200 chai-pb-8">
-            <div class="chai-flex chai-items-center chai-gap-3 chai-mb-4">
-              <i data-lucide="zap" class="chai-text-black"></i>
-              <h3 class="chai-text-base chai-font-semibold">Zero Build Step</h3>
-            </div>
-            <p class="chai-text-sm chai-text-zinc-500 chai-leading-relaxed">Import and go. No webpack, no PostCSS, no config. Works in any project.</p>
-          </div>
-
-          <div class="chai-border-b chai-border-zinc-200 chai-pb-8">
-            <div class="chai-flex chai-items-center chai-gap-3 chai-mb-4">
-              <i data-lucide="mouse-pointer-click" class="chai-text-black"></i>
-              <h3 class="chai-text-base chai-font-semibold">Hover & Focus</h3>
-            </div>
-            <p class="chai-text-sm chai-text-zinc-500 chai-leading-relaxed">Real CSS pseudo-selectors. Hover effects, transitions, focus rings — all working.</p>
-          </div>
-
-          <div class="chai-border-b chai-border-zinc-200 chai-pb-8">
-            <div class="chai-flex chai-items-center chai-gap-3 chai-mb-4">
-              <i data-lucide="layout-grid" class="chai-text-black"></i>
-              <h3 class="chai-text-base chai-font-semibold">Responsive</h3>
-            </div>
-            <p class="chai-text-sm chai-text-zinc-500 chai-leading-relaxed">Mobile-first breakpoints. sm:, md:, lg:, xl: — all the responsive utilities.</p>
-          </div>
-
-          <div class="chai-border-b chai-border-zinc-200 chai-pb-8">
-            <div class="chai-flex chai-items-center chai-gap-3 chai-mb-4">
-              <i data-lucide="moon" class="chai-text-black"></i>
-              <h3 class="chai-text-base chai-font-semibold">Dark Mode</h3>
-            </div>
-            <p class="chai-text-sm chai-text-zinc-500 chai-leading-relaxed">Automatic dark mode detection. Or use the dark: variant for manual control.</p>
-          </div>
-
-          <div class="chai-border-b chai-border-zinc-200 chai-pb-8">
-            <div class="chai-flex chai-items-center chai-gap-3 chai-mb-4">
-              <i data-lucide="palette" class="chai-text-black"></i>
-              <h3 class="chai-text-base chai-font-semibold">Tea Palette</h3>
-            </div>
-            <p class="chai-text-sm chai-text-zinc-500 chai-leading-relaxed">26 hand-crafted tea colors. Masala chai, Darjeeling, Matcha, and more.</p>
-          </div>
-
-          <div class="chai-border-b chai-border-zinc-200 chai-pb-8">
-            <div class="chai-flex chai-items-center chai-gap-3 chai-mb-4">
-              <i data-lucide="braces" class="chai-text-black"></i>
-              <h3 class="chai-text-base chai-font-semibold">Arbitrary Values</h3>
-            </div>
-            <p class="chai-text-sm chai-text-zinc-500 chai-leading-relaxed">Custom values when you need them. chai-bg-[#yourcolor], chai-p-[20px].</p>
-          </div>
-
+    <section class="container" style="padding: 80px 0;">
+      <div style="display: flex; gap: 48px; flex-wrap: wrap; justify-content: center;">
+        <div style="text-align: center;">
+          <div class="stat-number">2KB</div>
+          <div style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Gzipped</div>
         </div>
-      </section>
+        <div style="text-align: center;">
+          <div class="stat-number">200+</div>
+          <div style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Utility Classes</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="stat-number">0</div>
+          <div style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Build Config</div>
+        </div>
+      </div>
+    </section>
 
-      <section id="colors" class="chai-mb-32">
-        <h2 class="chai-text-sm chai-font-medium chai-uppercase chai-tracking-widest chai-text-zinc-400 chai-mb-12">Colors</h2>
-
-        <div class="chai-mb-12">
-          <h3 class="chai-text-sm chai-font-medium chai-text-zinc-600 chai-mb-6">Tea Collection</h3>
-          <div class="chai-flex chai-flex-wrap chai-gap-3">
-            <div class="chai-w-12 chai-h-12 chai-rounded-lg chai-bg-[#c68642] chai-border chai-border-zinc-300" title="masala-chai"></div>
-            <div class="chai-w-12 chai-h-12 chai-rounded-lg chai-bg-[#d4a373]" title="darjeeling-tea"></div>
-            <div class="chai-w-12 chai-h-12 chai-rounded-lg chai-bg-[#6ea64d]" title="matcha-tea"></div>
-            <div class="chai-w-12 chai-h-12 chai-rounded-lg chai-bg-[#b7410e]" title="tandoori-chai"></div>
-            <div class="chai-w-12 chai-h-12 chai-rounded-lg chai-bg-[#98e2c6]" title="mint-tea"></div>
-            <div class="chai-w-12 chai-h-12 chai-rounded-lg chai-bg-[#e8a0a0]" title="kashmiri-chai"></div>
-            <div class="chai-w-12 chai-h-12 chai-rounded-lg chai-bg-[#c94f6d]" title="hibiscus-tea"></div>
-            <div class="chai-w-12 chai-h-12 chai-rounded-lg chai-bg-[#3b2f2f]" title="black-tea"></div>
+    <section id="features" class="container" style="padding: 80px 0;">
+      <h2 class="font-display" style="font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 48px;">
+        Why Lemon?
+      </h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+        <div class="feature-card">
+          <div style="width: 48px; height: 48px; background: var(--accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+            <i data-lucide="zap" style="color: var(--accent);"></i>
           </div>
+          <h3 class="font-display" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Zero Build Step</h3>
+          <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7;">Import and go. No webpack, no PostCSS, no config. Works in any project — vanilla JS, React, Vue, Svelte.</p>
         </div>
 
-        <div>
-          <h3 class="chai-text-sm chai-font-medium chai-text-zinc-600 chai-mb-6">Tailwind Spectrum</h3>
-          <div class="chai-flex chai-gap-2 chai-flex-wrap">
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-red-500" title="red"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-orange-500" title="orange"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-amber-500" title="amber"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-yellow-500" title="yellow"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-lime-500" title="lime"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-green-500" title="green"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-emerald-500" title="emerald"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-teal-500" title="teal"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-cyan-500" title="cyan"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-sky-500" title="sky"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-blue-500" title="blue"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-indigo-500" title="indigo"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-violet-500" title="violet"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-purple-500" title="purple"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-fuchsia-500" title="fuchsia"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-pink-500" title="pink"></div>
-            <div class="chai-w-8 chai-h-8 chai-rounded-md chai-bg-rose-500" title="rose"></div>
+        <div class="feature-card">
+          <div style="width: 48px; height: 48px; background: var(--accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+            <i data-lucide="mouse-pointer-click" style="color: var(--accent);"></i>
           </div>
+          <h3 class="font-display" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Hover & Focus States</h3>
+          <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7;">Real CSS pseudo-selectors. Hover effects, transitions, focus rings — all working out of the box.</p>
         </div>
-      </section>
 
-      <section id="install" class="chai-mb-32">
-        <h2 class="chai-text-sm chai-font-medium chai-uppercase chai-tracking-widest chai-text-zinc-400 chai-mb-12">Install</h2>
-
-        <div class="chai-bg-zinc-50 chai-border chai-border-zinc-200 chai-rounded-2xl chai-overflow-hidden chai-mb-8">
-          <div class="chai-flex chai-items-center chai-px-4 chai-py-3 chai-bg-zinc-100 chai-border-b chai-border-zinc-200">
-            <i data-lucide="terminal" class="chai-text-zinc-400" style="width:14px;height:14px;"></i>
-            <span class="chai-text-xs chai-text-zinc-400 chai-ml-2">terminal</span>
+        <div class="feature-card">
+          <div style="width: 48px; height: 48px; background: var(--accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+            <i data-lucide="smartphone" style="color: var(--accent);"></i>
           </div>
-          <div class="chai-p-6">
-            <div class="chai-mb-6">
-              <span class="chai-text-xs chai-font-medium chai-text-zinc-400 chai-mb-2 chai-block">Install the package</span>
-              <code class="chai-block chai-bg-white chai-border chai-border-zinc-200 chai-px-4 chai-py-3 chai-rounded-lg chai-font-mono chai-text-sm chai-text-black">
-                npm install pandora-css
+          <h3 class="font-display" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Mobile-First Responsive</h3>
+          <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7;">Responsive utilities with le-sm:, le-md:, le-lg:, le-xl: prefixes. Design for every screen size.</p>
+        </div>
+
+        <div class="feature-card">
+          <div style="width: 48px; height: 48px; background: var(--accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+            <i data-lucide="moon" style="color: var(--accent);"></i>
+          </div>
+          <h3 class="font-display" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Dark Mode Support</h3>
+          <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7;">Automatic dark mode detection with le-dark: variant for manual control. Your users' eyes will thank you.</p>
+        </div>
+
+        <div class="feature-card">
+          <div style="width: 48px; height: 48px; background: var(--accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+            <i data-lucide="palette" style="color: var(--accent);"></i>
+          </div>
+          <h3 class="font-display" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Citrus Color Palette</h3>
+          <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7;">26 hand-crafted colors. Lemon zest, orange peel, lime, grapefruit — plus full Tailwind spectrum.</p>
+        </div>
+
+        <div class="feature-card">
+          <div style="width: 48px; height: 48px; background: var(--accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+            <i data-lucide="braces" style="color: var(--accent);"></i>
+          </div>
+          <h3 class="font-display" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Arbitrary Values</h3>
+          <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7;">Custom values when you need them. le-bg-[#yourcolor], le-p-[20px], le-w-[calc(100%-40px)].</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="colors" class="container" style="padding: 80px 0;">
+      <h2 class="font-display" style="font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 48px;">
+        Colors
+      </h2>
+
+      <div style="margin-bottom: 48px;">
+        <h3 style="font-size: 14px; font-weight: 500; color: var(--text-secondary); margin-bottom: 16px;">Citrus Collection</h3>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <div class="color-swatch" style="background: #FFD93D;" title="lemon-zest"></div>
+          <div class="color-swatch" style="background: #FF9F1C;" title="orange-peel"></div>
+          <div class="color-swatch" style="background: #00E676;" title="lime-fresh"></div>
+          <div class="color-swatch" style="background: #FF6B6B;" title="grapefruit"></div>
+          <div class="color-swatch" style="background: #E040FB;" title="dragon-fruit"></div>
+          <div class="color-swatch" style="background: #69F0AE;" title="matcha"></div>
+          <div class="color-swatch" style="background: #FFAB40;" title="tangerine"></div>
+          <div class="color-swatch" style="background: #B388FF;" title="lavender-honey"></div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size: 14px; font-weight: 500; color: var(--text-secondary); margin-bottom: 16px;">Full Spectrum</h3>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <div class="color-swatch" style="background: #ef4444; width: 36px; height: 36px;" title="red"></div>
+          <div class="color-swatch" style="background: #f97316; width: 36px; height: 36px;" title="orange"></div>
+          <div class="color-swatch" style="background: #eab308; width: 36px; height: 36px;" title="yellow"></div>
+          <div class="color-swatch" style="background: #84cc16; width: 36px; height: 36px;" title="lime"></div>
+          <div class="color-swatch" style="background: #22c55e; width: 36px; height: 36px;" title="green"></div>
+          <div class="color-swatch" style="background: #14b8a6; width: 36px; height: 36px;" title="teal"></div>
+          <div class="color-swatch" style="background: #06b6d4; width: 36px; height: 36px;" title="cyan"></div>
+          <div class="color-swatch" style="background: #3b82f6; width: 36px; height: 36px;" title="blue"></div>
+          <div class="color-swatch" style="background: #8b5cf6; width: 36px; height: 36px;" title="violet"></div>
+          <div class="color-swatch" style="background: #d946ef; width: 36px; height: 36px;" title="fuchsia"></div>
+          <div class="color-swatch" style="background: #ec4899; width: 36px; height: 36px;" title="pink"></div>
+          <div class="color-swatch" style="background: #f43f5e; width: 36px; height: 36px;" title="rose"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="container" style="padding: 80px 0;">
+      <h2 class="font-display" style="font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 48px;">
+        Install
+      </h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px;">
+        <div class="code-block">
+          <div class="code-header">
+            <i data-lucide="terminal" style="width:14px;height:14px; color: var(--text-muted);"></i>
+            <span style="font-size: 12px; color: var(--text-muted);">npm</span>
+          </div>
+          <div class="code-content">
+            <div style="margin-bottom: 20px;">
+              <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 8px;">Install the package</span>
+              <code style="display: block; background: var(--bg-primary); border: 1px solid var(--border); padding: 12px 16px; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 13px;">
+                npm install lemon-css
               </code>
             </div>
             <div>
-              <span class="chai-text-xs chai-font-medium chai-text-zinc-400 chai-mb-2 chai-block">Import and initialize</span>
-              <code class="chai-block chai-bg-white chai-border chai-border-zinc-200 chai-px-4 chai-py-3 chai-rounded-lg chai-font-mono chai-text-sm chai-text-black">
-                <span class="chai-text-violet-600">import</span> { initChai } <span class="chai-text-violet-600">from</span> <span class="chai-text-green-600">'pandora-css'</span>;
-                <br>initChai();
+              <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 8px;">Import and initialize</span>
+              <code style="display: block; background: var(--bg-primary); border: 1px solid var(--border); padding: 12px 16px; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 13px;">
+<span class="code-keyword">import</span> { <span class="code-function">initLemon</span> } <span class="code-keyword">from</span> <span class="code-string">'lemon-css'</span>;
+<br><span class="code-function">initLemon</span>();
               </code>
             </div>
           </div>
         </div>
 
-        <div class="chai-flex chai-items-center chai-justify-center chai-gap-6">
-          <a href="https://github.com" target="_blank" class="chai-flex chai-items-center chai-gap-2 chai-text-sm chai-text-zinc-500 chai-hover:text-black chai-transition">
-            <i data-lucide="github" style="width:16px;height:16px;"></i>
-            GitHub
-          </a>
-          <span class="chai-text-zinc-300">·</span>
-          <a href="https://npmjs.com" target="_blank" class="chai-flex chai-items-center chai-gap-2 chai-text-sm chai-text-zinc-500 chai-hover:text-black chai-transition">
-            <i data-lucide="package" style="width:16px;height:16px;"></i>
-            npm
-          </a>
-        </div>
-      </section>
-
-    </main>
-
-    <footer class="chai-border-t chai-border-zinc-200 chai-pt-12">
-      <div class="chai-flex chai-flex-col chai-items-center chai-justify-between chai-gap-6 chai-sm:flex-row">
-        <div class="chai-flex chai-items-center chai-gap-3">
-          <div class="chai-w-6 chai-h-6 chai-rounded-md chai-bg-black chai-flex chai-items-center chai-justify-center">
-            <svg class="chai-text-white" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M12 10v2"/><path d="M8 14c-2 0-4 1-4 3v2h16v-2c0-2-2-3-4-3"/><path d="M4 8l2-2"/><path d="M20 8l-2-2"/><path d="M12 8v6"/></svg>
+        <div class="code-block">
+          <div class="code-header">
+            <i data-lucide="globe" style="width:14px;height:14px; color: var(--text-muted);"></i>
+            <span style="font-size: 12px; color: var(--text-muted);">CDN (Quick Start)</span>
           </div>
-          <span class="chai-text-sm chai-font-medium">Pandora CSS</span>
-        </div>
-        <p class="chai-text-sm chai-text-zinc-400">
-          Made with <i data-lucide="heart" class="chai-inline chai-text-zinc-300" style="width:12px;height:12px;"></i> by <a href="https://github.com" target="_blank" class="chai-text-zinc-500 chai-hover:text-black chai-transition">Sourav Kumar</a>
-        </p>
-        <div class="chai-flex chai-gap-4">
-          <a href="#" class="chai-text-zinc-400 chai-hover:text-black chai-transition chai-text-sm">Docs</a>
-          <a href="#" class="chai-text-zinc-400 chai-hover:text-black chai-transition chai-text-sm">Examples</a>
+          <div class="code-content">
+            <div>
+              <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 8px;">Add to your HTML</span>
+              <code style="display: block; background: var(--bg-primary); border: 1px solid var(--border); padding: 12px 16px; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 13px;">
+<span class="code-tag">&lt;script</span> <span class="code-attr">type</span>=<span class="code-string">"module"</span><span class="code-tag">&gt;</span>
+  <span class="code-keyword">import</span> { <span class="code-function">initLemon</span> } <span class="code-keyword">from</span>
+    <span class="code-string">'https://esm.sh/lemon-css'</span>;
+  <span class="code-function">initLemon</span>();
+<span class="code-tag">&lt;/script&gt;</span>
+              </code>
+            </div>
+          </div>
         </div>
       </div>
-    </footer>
+    </section>
 
-  </div>
+  </main>
+
+  <footer class="container" style="padding: 48px 0; border-top: 1px solid var(--border); margin-top: 40px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="lemon" style="width: 32px; height: 32px; animation: none;"></div>
+        <span class="font-display" style="font-weight: 600;">Lemon CSS</span>
+      </div>
+      
+      <div style="display: flex; align-items: center; gap: 32px;">
+        <a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 14px;" class="nav-link">Docs</a>
+        <a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 14px;" class="nav-link">Examples</a>
+        <a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 14px;" class="nav-link">Changelog</a>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 14px;">
+        Made with <i data-lucide="heart" class="inline" style="width:12px;height:12px; color: #ef4444; vertical-align: middle;"></i> by <a href="https://github.com" target="_blank" style="color: var(--accent);">Sourav Kumar</a>
+      </p>
+    </div>
+  </footer>
 
   <script type="module">
-    import { initChai } from './pandora-css/dist/pendora-css.esm.js';
-    initChai();
+    import { initLemon } from './lemon-css/dist/lemon-css.esm.js';
+    initLemon();
     lucide.createIcons();
   </script>
 

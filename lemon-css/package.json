@@ -1,22 +1,22 @@
 {
-  "name": "@sourav7534kumar/pandora-css",
+  "name": "lemon-css",
   "version": "1.0.0",
   "description": "A zero-build, utility-first CSS engine — like Tailwind but at runtime. Supports hover/focus variants, responsive breakpoints, dark mode, arbitrary values, full Tailwind color palette, and unique tea colors.",
   "type": "module",
-  "main": "dist/pandora-css.cjs.js",
-  "module": "dist/pandora-css.esm.js",
-  "unpkg": "dist/pandora-css.min.js",
-  "jsdelivr": "dist/pandora-css.min.js",
+  "main": "dist/lemon-css.cjs.js",
+  "module": "dist/lemon-css.esm.js",
+  "unpkg": "dist/lemon-css.min.js",
+  "jsdelivr": "dist/lemon-css.min.js",
   "types": "src/types.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/pandora-css.esm.js",
-      "require": "./dist/pandora-css.cjs.js",
-      "default": "./dist/pandora-css.cjs.js"
+      "import": "./dist/lemon-css.esm.js",
+      "require": "./dist/lemon-css.cjs.js",
+      "default": "./dist/lemon-css.cjs.js"
     },
-    "./dist/pandora-css.min.js": {
-      "import": "./dist/pandora-css.min.js",
-      "default": "./dist/pandora-css.min.js"
+    "./dist/lemon-css.min.js": {
+      "import": "./dist/lemon-css.min.js",
+      "default": "./dist/lemon-css.min.js"
     }
   },
   "files": [
@@ -28,7 +28,7 @@
     "utility-first",
     "tailwind",
     "runtime-css",
-    "pandora",
+    "lemon",
     "zero-build",
     "design-system",
     "utility-css"
@@ -37,12 +37,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/souravkumdev/pandora-css.git"
+    "url": "git+https://github.com/souravkumdev/lemon-css.git"
   },
   "bugs": {
-    "url": "https://github.com/souravkumdev/pandora-css/issues"
+    "url": "https://github.com/souravkumdev/lemon-css/issues"
   },
-  "homepage": "https://github.com/souravkumdev/pandora-css#readme",
+  "homepage": "https://github.com/souravkumdev/lemon-css#readme",
   "engines": {
     "node": ">=16.0.0"
   },

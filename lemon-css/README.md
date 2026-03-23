@@ -1,13 +1,13 @@
-# Pandora CSS
+# Lemon CSS
 
 A zero-build, utility-first CSS engine that brings the developer experience of Tailwind CSS to runtime. Write semantic class names inspired by tea nomenclature while shipping zero CSS to your users.
 
-[![npm version](https://img.shields.io/npm/v/@sourav7534kumar/pandora-css)](https://www.npmjs.com/package/@sourav7534kumar/pandora-css)
-[![License](https://img.shields.io/npm/l/@sourav7534kumar/pandora-css)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/lemon-css)](https://www.npmjs.com/package/lemon-css)
+[![License](https://img.shields.io/npm/l/lemon-css)](LICENSE)
 
-## Why Pandora CSS?
+## Why Lemon CSS?
 
-Traditional CSS frameworks require build steps, configuration, and generate static stylesheets. Pandora CSS takes a different approach:
+Traditional CSS frameworks require build steps, configuration, and generate static stylesheets. Lemon CSS takes a different approach:
 
 - **Zero build configuration** — Import and use immediately
 - **Runtime generation** — Styles are injected dynamically when needed
@@ -17,13 +17,13 @@ Traditional CSS frameworks require build steps, configuration, and generate stat
 ## Installation
 
 ```bash
-npm install @sourav7534kumar/pandora-css
+npm install lemon-css
 ```
 
 ## Quick Start
 
 ```javascript
-import { initChai } from '@sourav7534kumar/pandora-css';
+import { initChai } from 'lemon-css';
 initChai();
 ```
 
@@ -52,7 +52,7 @@ initChai();
 
 ### Zero Build Required
 
-Unlike traditional CSS frameworks, Pendora CSS requires no PostCSS, no Tailwind CLI, and no build configuration. The styles are generated at runtime:
+Unlike traditional CSS frameworks, Lemon CSS requires no PostCSS, no Tailwind CLI, and no build configuration. The styles are generated at runtime:
 
 ```javascript
 // Before: Complex build pipeline
@@ -61,21 +61,21 @@ Unlike traditional CSS frameworks, Pendora CSS requires no PostCSS, no Tailwind 
 // build process generates static CSS
 
 // After: Just import
-import { initChai } from '@sourav7534kumar/pandora-css';
+import { initChai } from 'lemon-css';
 initChai();
 ```
 
 ### Dynamic Applications
 
-Pendora CSS uses MutationObserver to automatically handle dynamically added elements in SPAs:
+Lemon CSS uses MutationObserver to automatically handle dynamically added elements in SPAs:
 
 ```javascript
 // No extra code needed
 // Just call initChai() once at startup
-import { initChai } from '@sourav7534kumar/pandora-css';
+import { initChai } from 'lemon-css';
 initChai();
 
-// Pendora CSS handles the rest
+// Lemon CSS handles the rest
 // Dynamically added elements are automatically processed
 ```
 
@@ -208,7 +208,7 @@ chai-2xl:   (≥1536px)
 
 ## How It Works
 
-Pendora CSS injects real `<style>` rules into the document rather than using inline styles:
+Lemon CSS injects real `<style>` rules into the document rather than using inline styles:
 
 ```css
 .chai-hover\:bg-blue-500:hover { background-color: #3b82f6 }
@@ -230,7 +230,7 @@ This approach provides several advantages:
 Initializes the CSS engine. Call once at application startup.
 
 ```javascript
-import { initChai } from '@sourav7534kumar/pandora-css';
+import { initChai } from 'lemon-css';
 initChai();
 ```
 
@@ -239,7 +239,7 @@ initChai();
 Manually processes an element's chai-* classes. Use this for elements added after initialization.
 
 ```javascript
-import { applyElement } from '@sourav7534kumar/pandora-css';
+import { applyElement } from 'lemon-css';
 applyElement(document.getElementById('dynamic-content'));
 ```
 

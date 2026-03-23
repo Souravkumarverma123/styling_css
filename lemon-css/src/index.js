@@ -1,8 +1,8 @@
 /**
- * index.js — Public API entry point for pandora-css
+ * index.js — Public API entry point for lemon-css
  *
  * Import this in your project:
- *   import { initChai } from 'pandora-css';
+ *   import { initChai } from 'lemon-css';
  *   initChai();
  */
 

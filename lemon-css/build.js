@@ -1,5 +1,5 @@
 /**
- * Build script for pendora-css
+ * Build script for lemon-css
  * Bundles source files into dist/ for npm publishing
  */
 
@@ -16,7 +16,7 @@ function run(command) {
   execSync(command, { cwd: __dirname, stdio: 'inherit' });
 }
 
-console.log('Building pendora-css...\n');
+console.log('Building lemon-css...\n');
 
 // Clean dist
 if (existsSync(distDir)) {
@@ -44,9 +44,9 @@ delete pkg.scripts;
 writeFileSync(resolve(distDir, 'package.json'), JSON.stringify(pkg, null, 2));
 
 console.log('\n✅ Build complete!');
-console.log('   dist/pendora-css.esm.js  — ES Module');
-console.log('   dist/pendora-css.cjs.js  — CommonJS');
-console.log('   dist/pendora-css.min.js — IIFE (for <script> tag)');
+console.log('   dist/lemon-css.esm.js  — ES Module');
+console.log('   dist/lemon-css.cjs.js  — CommonJS');
+console.log('   dist/lemon-css.min.js — IIFE (for <script> tag)');
 console.log('   dist/types.d.ts          — TypeScript definitions');
 
 function createManualBundle() {
@@ -67,11 +67,11 @@ function createManualBundle() {
   bundle += indexContent + '\n';
 
   // ESM
-  writeFileSync(resolve(distDir, 'pendora-css.esm.js'), bundle);
+  writeFileSync(resolve(distDir, 'lemon-css.esm.js'), bundle);
   // CJS
-  const cjsBundle = `module.exports = require('./pendora-css.cjs.js');`;
-  writeFileSync(resolve(distDir, 'pendora-css.cjs.js'), `(function() { ${bundle} })();`);
+  const cjsBundle = `module.exports = require('./lemon-css.cjs.js');`;
+  writeFileSync(resolve(distDir, 'lemon-css.cjs.js'), `(function() { ${bundle} })();`);
   // Min (IIFE) - just copy ESM as placeholder
-  writeFileSync(resolve(distDir, 'pendora-css.min.js'), bundle);
-  writeFileSync(resolve(distDir, 'pendora-css.umd.js'), `(function(global) { ${bundle} })(typeof window !== 'undefined' ? window : global);`);
+  writeFileSync(resolve(distDir, 'lemon-css.min.js'), bundle);
+  writeFileSync(resolve(distDir, 'lemon-css.umd.js'), `(function(global) { ${bundle} })(typeof window !== 'undefined' ? window : global);`);
 }

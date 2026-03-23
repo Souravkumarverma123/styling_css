@@ -17,20 +17,20 @@ export default [
     input: 'src/index.js',
     output: [
       {
-        file: 'dist/pendora-css.esm.js',
+        file: 'dist/lemon-css.esm.js',
         format: 'esm',
         sourcemap: true,
       },
       {
-        file: 'dist/pendora-css.cjs.js',
+        file: 'dist/lemon-css.cjs.js',
         format: 'cjs',
         sourcemap: true,
         exports: 'named',
       },
       {
-        file: 'dist/pendora-css.umd.js',
+        file: 'dist/lemon-css.umd.js',
         format: 'umd',
-        name: 'PendoraCSS',
+        name: 'PandoraCSS',
         sourcemap: true,
         globals: {},
       },
@@ -41,9 +41,9 @@ export default [
   {
     input: 'src/index.js',
     output: {
-      file: 'dist/pendora-css.min.js',
+      file: 'dist/lemon-css.min.js',
       format: 'iife',
-      name: 'PendoraCSS',
+      name: 'PandoraCSS',
       sourcemap: true,
     },
     plugins: [

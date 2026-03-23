@@ -1,2 +1,2 @@
-import { initChai } from '../pandora-css/dist/pendora-css.esm.js';
+import { initChai } from '../lemon-css/dist/lemon-css.esm.js';
 initChai();

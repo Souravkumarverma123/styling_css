@@ -605,10 +605,10 @@ function watchDom() {
 // ─── Public boot function ─────────────────────────────────────────────────────
 
 /**
- * Boots the Pandora CSS engine. Call once in your entry file.
+ * Boots the Lemon CSS engine. Call once in your entry file.
  *
  * @example
- *   import { initChai } from 'pandora-css';
+ *   import { initChai } from 'lemon-css';
  *   initChai();
  */
 export function initChai() {

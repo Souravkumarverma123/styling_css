@@ -15,11 +15,11 @@ This landing page is built entirely with Pandora CSS — no Tailwind, no custom 
 ## Quick Start
 
 ```bash
-npm install pandora-css
+npm install lemon-css
 ```
 
 ```js
-import { initChai } from 'pandora-css';
+import { initChai } from 'lemon-css';
 initChai();
 ```
 
@@ -33,7 +33,7 @@ initChai();
   <button class="chai-bg-masala-chai chai-text-white chai-px-6 chai-py-3
                  chai-rounded-full chai-font-semibold chai-transition
                  chai-hover:bg-tandoori-chai chai-cursor-pointer">
-    Brew It
+    Try It
   </button>
 
 </div>
@@ -53,7 +53,7 @@ npm run dev
 ## Project Structure
 
 ```
-├── pandora-css/              ← npm package
+├── lemon-css/              ← npm package
 │   ├── src/
 │   │   ├── index.js           ← public API
 │   │   ├── engine.js           ← CSS injection engine
