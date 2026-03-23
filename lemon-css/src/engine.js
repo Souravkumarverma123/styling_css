@@ -676,10 +676,10 @@ function watchDom() {
  * Boots the Lemon CSS engine. Call once in your entry file.
  *
  * @example
- *   import { initChai } from 'lemon-css';
- *   initChai();
+ *   import { initLemon } from 'lemon-css';
+ *   initLemon();
  */
-export function initChai() {
+export function initLemon() {
   createStyleSheet();
 
   const run = () => {

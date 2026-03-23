@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build:lemon-css && vite build",
-    "build:lemon-css": "cd lemon-css && npm run build",
+    "build:lemon-css": "cd lemon-css && npm install && npm run build",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^8.0.1"
+    "vite": "^8.0.1",
+    "rollup": "^4.20.0"
   }
 }

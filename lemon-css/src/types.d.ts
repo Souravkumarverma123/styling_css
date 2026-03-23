@@ -27,10 +27,10 @@ export interface ColorPalette {
 }
 
 /**
- * Initialize the Chai CSS engine.
+ * Initialize the Lemon CSS engine.
  * Call this once at app startup.
  */
-export function initChai(config?: ChaiConfig): void;
+export function initLemon(config?: ChaiConfig): void;
 
 /**
  * Apply chai-* classes on a specific element.
