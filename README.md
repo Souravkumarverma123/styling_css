@@ -1,4 +1,4 @@
-# ☕ Pendora CSS
+# ☕ Pandora CSS
 
 > A zero-build, utility-first CSS engine — like Tailwind, but at runtime.
 
@@ -15,11 +15,11 @@ This landing page is built entirely with Pendora CSS — no Tailwind, no custom 
 ## Quick Start
 
 ```bash
-npm install pendora-css
+npm install pandora-css
 ```
 
 ```js
-import { initChai } from 'pendora-css';
+import { initChai } from 'pandora-css';
 initChai();
 ```
 
@@ -53,7 +53,7 @@ npm run dev
 ## Project Structure
 
 ```
-├── pendora-css/              ← npm package
+├── pandora-css/              ← npm package
 │   ├── src/
 │   │   ├── index.js           ← public API
 │   │   ├── engine.js           ← CSS injection engine
@@ -70,7 +70,7 @@ npm run dev
 
 ## Features
 
-| Feature | **Pendora CSS** |
+| Feature | **Pandora CSS** |
 |---|---|
 | Zero build step | ✅ |
 | Hover / focus / active | ✅ `chai-hover:bg-blue-500` |
